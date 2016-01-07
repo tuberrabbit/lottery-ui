@@ -21,8 +21,8 @@ angular.module('app').factory('daoLottery', function () {
     _.extend(this, angular.fromJson(data));
   };
   DaoLottery.prototype.save = function () {
-    _.each(this.awards, function(award) {
-      award.id = +award.id
+    _.each(this.awards, function (award) {
+      award.id = +award.id;
     });
     var data = angular.toJson(this);
     localStorage.setItem('lottery', data);
@@ -42,13 +42,13 @@ angular.module('app').factory('daoLottery', function () {
   DaoLottery.prototype.removeAward = function (award) {
     this.awards.splice(this.awards.indexOf(award), 1);
   };
-  DaoLottery.prototype.importJson = function(text) {
+  DaoLottery.prototype.importJson = function (text) {
     var data = angular.fromJson(text);
     _.extend(this, data);
   };
-  DaoLottery.prototype.exportJson = function() {
-    var blob = new Blob([angular.toJson(this)], {type: "application/json;charset=utf-8"});
-    saveAs(blob, "lottery-" + moment().format('YYYYMMDD') + ".json");
+  DaoLottery.prototype.exportJson = function () {
+    var blob = new Blob([angular.toJson(this)], {type: 'application/json;charset=utf-8'});
+    saveAs(blob, 'lottery-' + moment().format('YYYYMMDD') + '.json');
   };
   return new DaoLottery();
 });

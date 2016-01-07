@@ -1,24 +1,26 @@
 'use strict';
 
-angular.module('app').factory('daoPlayer', function(rightOfFilter) {
+angular.module('app').factory('daoPlayer', function (rightOfFilter) {
   function DaoPlayer() {
     this.items = [];
   }
-  DaoPlayer.prototype.add = function(player) {
+
+  DaoPlayer.prototype.add = function (player) {
     if (!player.id) {
       player.id = this.items.length + 1;
     } else {
       // 转换成数字id，方便排序
       player.id = +player.id;
     }
-    if (!_.findWhere(this.items, {name: player.name, mobile: player.mobile}))
+    if (!_.findWhere(this.items, {name: player.name, mobile: player.mobile})) {
       this.items.push(player);
+    }
   };
-  DaoPlayer.prototype.remove = function(player) {
+  DaoPlayer.prototype.remove = function (player) {
     var index = this.items.indexOf(player);
     this.items.splice(index, 1);
   };
-  DaoPlayer.prototype.importText = function(text) {
+  DaoPlayer.prototype.importText = function (text) {
     this.items = [];
     var lines = text.split(/(\r|\n)+/);
     var self = this;
@@ -35,13 +37,13 @@ angular.module('app').factory('daoPlayer', function(rightOfFilter) {
       }
     });
   };
-  DaoPlayer.prototype.clear = function() {
+  DaoPlayer.prototype.clear = function () {
     this.items = [];
   };
-  DaoPlayer.prototype.load = function() {
+  DaoPlayer.prototype.load = function () {
     this.items = angular.fromJson(localStorage.getItem('players'));
   };
-  DaoPlayer.prototype.save = function() {
+  DaoPlayer.prototype.save = function () {
     localStorage.setItem('players', angular.toJson(this.items));
   };
   return new DaoPlayer();

@@ -72,6 +72,8 @@ angular.module('app').controller('PlayMainCtrl', function ($scope, daoLottery, d
   };
   vm.giveUp = function () {
     vm.current.givenUp = true;
+    vm.current.awardId = '';
+    --vm.awardIndex;
     vm.start();
   };
 

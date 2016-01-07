@@ -23,12 +23,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="award in vm.lottery.awards | orderBy:'id':true">
+      <tr ng-repeat="award in vm.lottery.awards | orderBy:'-id'">
         <td><a ng-href="#!/award/{{award.id}}/ready">{{award.name}}</a></td>
         <td>{{award.count}}</td>
-        <td>
-          <span ng-repeat="item in award.items">{{item}}</span>
-        </td>
+        <td>{{award.items}}</td>
       </tr>
       </tbody>
     </table>
